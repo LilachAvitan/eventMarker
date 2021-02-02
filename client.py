@@ -2,16 +2,17 @@ import socket
 import time
 
 
-HOST = '127.0.0.1'  # The server's hostname or IP address
+HOST = '132.64.105.40'  # The IP address of the streams-7 macing, can be obtained using ipconfig 
 PORT = 65432        # The port used by the server
+
+print ("Trying to connect host "+HOST+" Port "+ str(PORT))
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
     tsStart = time.time()
-    for i in range(1,10):
-        s.sendall(b'i')
-        data = s.recv(1024)
-        print('Received', repr(data))
+    s.sendall(b'f9')
+    data = s.recv(1024)
+    print('Received', repr(data))
     tsEnd=time.time()
     print("time diff =" ,(tsEnd-tsStart)/10)
     
